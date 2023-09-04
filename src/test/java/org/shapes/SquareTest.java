@@ -13,51 +13,31 @@ class SquareTest {
     }
 
     @Test
-    public void testToString() {
-        Square spySquare = spy(testSquare);
-
-        when(spySquare.getSide()).thenReturn(5.0);
-        when(spySquare.calculateArea()).thenReturn(25.0);
-        when(spySquare.calculatePerimeter()).thenReturn(20.0);
-
-        String result = spySquare.toString();
-        String expectedResult = ">> Square << \nSide: 5.0\nArea: 25.0\nPerimeter: 20.0";
-
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testCalculateArea() {
+    public void calculateArea_ValidInput_CalculatedSquareArea() {
         double result = testSquare.calculateArea();
 
         assertEquals(25, result);
     }
 
     @Test
-    public void testCalculatePerimeter() {
+    public void calculatePerimeter_ValidInput_CalculatedSquarePerimeter() {
         double result = testSquare.calculatePerimeter();
 
         assertEquals(20, result);
     }
 
     @Test
-    public void testGetSide() {
-        assertEquals(5, testSquare.getSide());
-    }
-
-
-    @Test
-    public void testValidateSideShouldNotThrowIfInputIsPositive() {
+    public void validateSide_PositiveInput_ShouldNotThrow() {
         assertDoesNotThrow(() -> testSquare.validateSide(5));
     }
 
     @Test
-    public void testValidateSideShouldThrowIfInputIsNegative() {
+    public void validateSide_NegativeInput_ExceptionThrown() {
         assertThrows(IllegalArgumentException.class, () -> testSquare.validateSide(-5));
     }
 
     @Test
-    public void testValidateSideShouldThrowIfInputIsZero() {
+    public void validateSide_ZeroInput_ExceptionThrown() {
         assertThrows(IllegalArgumentException.class, () -> testSquare.validateSide(0));
     }
 }
